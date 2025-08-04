@@ -1,0 +1,12 @@
+body{
+    background-color: rgb(134, 138, 138);
+}
+
+
+.imput-email{
+border-style: solid;
+border-radius: 100;
+text-align: center;
+border-color: rgb(11, 107, 192);
+border: none;
+}
