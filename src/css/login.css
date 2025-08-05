@@ -1,12 +1,23 @@
-body{
-    background-color: rgb(134, 138, 138);
+
+
+.imputs{
+    border-style: solid;
+    border-radius: 10px;
+    text-align: center;
+    border-color: rgb(221, 58, 9);
+    border: none;
 }
 
+.imputs-senha{
+    border-style: solid;
+    border-radius: 10px;
+    text-align: center;
+    border-color: rgb(221, 58, 9);
+    border: none;
+}
 
-.imput-email{
-border-style: solid;
-border-radius: 100;
-text-align: center;
-border-color: rgb(11, 107, 192);
-border: none;
+.button-login{
+    border-style: solid;
+    border-radius: 50px;
+
 }

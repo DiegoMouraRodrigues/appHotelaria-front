@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
   "keywords": [
     "hotel",
     "gerenciamento",
@@ -17,7 +16,9 @@
     "javacript",
     "react"
   ],
-  
   "author": "Diego Moura",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.7"
+  }
 }
