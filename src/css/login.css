@@ -2,10 +2,12 @@
 
 .imputs{
     border-style: solid;
-    border-radius: 10px;
     text-align: center;
     border-color: rgb(221, 58, 9);
     border: none;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .imputs-senha{
@@ -20,4 +22,16 @@
     border-style: solid;
     border-radius: 50px;
 
+}
+
+.btn-primary{
+    background-color: blue;
+    border-color: blue;
+}
+
+.btn{
+    font-family: "lato",sans-serif;
+    font-weight: 700px;
+    font-style: normal;
+    font-size: 17px;
 }
