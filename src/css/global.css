@@ -1,7 +1,19 @@
+.boby{
+    background-image: 
+
+}
+
 .titulos{
     font-family: "Lato", sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 15px;
+    font-size: 25px;
 
+}
+
+.btn{
+    font-family: "lato", sans-serif;
+    font-weight:  700;
+    font-style: normal;
+    font-size: 17px;
 }

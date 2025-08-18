@@ -1,6 +1,6 @@
 export default function (){
     const formulario = document.createElement('form');
-    formulario.className = 'd-flex flex-colunm';
+    formulario.className = 'd-flex flex-column'; 
 
     //email
     const email = document.createElement('input');
@@ -17,16 +17,14 @@ export default function (){
     formulario.appendChild(senha);
 
     //button de entar
-    const entar = document.createElement('button');
-    entar.type = 'submit';
-    entar.classname = 'button-login';
-    entar.textContent = "Entrar";
-    entar.className = 'btn btn-primary';
-    formulario.appendChild(entar);
+    const btnAuth = document.createElement('button');
+    btnAuth.type = 'submit';
+    btnAuth.classname = 'button-login';
+    btnAuth.textContent = "Entrar";
+    btnAuth.className = 'btn btn-primary';
+    formulario.appendChild(btnAuth);
 
-    return formulario;
-
-     
+    return formulario;  
 }
 
 

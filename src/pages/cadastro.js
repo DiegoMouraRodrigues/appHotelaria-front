@@ -1,19 +1,11 @@
-import loginform from "../components/loginform.js";
-import NavBar from "../components/Menu.js";
-
-export default function renderLoginPage(){
-
-    const nav = document.getElementById('navbar');
-    nav.innerHTML = '';
-
-    const navbar = NavBar();
-    nav.appendChild(navbar);
+import loginform from "../components/loginform";
+export default function(){
 
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
 
     const titulos = document.createElement('h1');
-    titulos.textContent = 'faça o login ou crie uma conta';
+    titulos.textContent = 'Crie sua conta';
     titulos.className = 'titulos';
     //centraliza somente o titulo da pagina de login
     titulos.style.textAlign = 'center';
@@ -29,10 +21,17 @@ export default function renderLoginPage(){
     
     const formulario = loginform();
 
+    const nome = document.createElement('input');
+    nome.type = 'nome';
+    nome.placeholder = "Digite seu nome";
+    nome.classname = 'nome_cadastro';
+    formulario.appendChild(nome);
+
+    formulario.btnAuth.textContent = "Criar conta";
+
 
     container.appendChild(titulos);
-    container.appendChild(formulario); // nova div container, ja dentro de divroot, contem o form
+    container.appendChild(nome);
+    container.appendChild(formulario);
 
 }
-
-
