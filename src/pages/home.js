@@ -1,16 +1,17 @@
-import hero from "../components/heroBar.js";
-import naveBar from "../components/Navbar.js";
+import Hero from "../components/Hero.js";
+import Navbar from "../components/Navbar.js";
 
+export default function renderCarroselPage() {
+    const nav = document.getElementById('navbar');
+    nav.innerHTML = '';
 
-export default function renderCarroselPage() { 
-    const nav = document.getElementById('navBar');
-    nav.innerHTML = ''; 
-    
-    const naveBar = naveBar();
-    nav.appendChild(naveBar);
+    const navbar = Navbar();
+    nav.appendChild(navbar);
 
-    const divRoot = document.getElementById('root');
-    divRoot.innerHTML = '';
+    const DivRoot = document.getElementById('root');
+    DivRoot.innerHTML = '';
 
-    const hero = hero(hero);
+    const hero = Hero();
+    DivRoot.appendChild(hero);
+
 }

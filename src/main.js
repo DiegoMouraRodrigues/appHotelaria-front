@@ -8,14 +8,13 @@ const routes = {
    "/register": renderRegisterPage,
    "/home": renderCarroselPage
 
-   //Novas páginas aqui adicionadas conforme desenvolvidas
 };
 
-//Obtém o caminho atual a partir do hash da URL
+//Obtém o caminho atual a partir do nome
 function getPath() {
-   //obtém o hash (ex. "#/login"), remove o # e tira espaços
-   const url = (location.hash || "").replace(/^#/, "").trim();
-   
+   //exemplo: (ex. "/login")
+   const url = (location.pathname || "").replace("/estudo_diegoM/", "/").trim();
+   console.log(url);
    //retorna url se começar com "/", se não, retorna "/home" como padrão
    return url && url.startsWith("/") ? url : "/home";         
 }
@@ -27,6 +26,5 @@ function renderRoutes() {
    render(); //Executa a função de render na página atual
 }
 
-window.addEventListener("hashchange", renderRoutes);
 //Renderizacao
 document.addEventListener('DOMContentLoaded', renderRoutes);

@@ -1,4 +1,4 @@
-export default function hero(){
+export default function Hero(){
     const containerHero = document.createElement('div');
     containerHero.innerHTML =
      `
@@ -10,15 +10,15 @@ export default function hero(){
     </ol>
     <div class="carousel-inner">
     <div class="carousel-item active">
-        <img class="d-block w-100" src="../public/assets/images/hotel_frente.jpg" alt="frente">
+        <img class="d-block w-100" src="public/assets/images/hotel_frente.jpg" alt="frente">
     </div>
 
     <div class="carousel-item">
-        <img class="d-block w-100" src="../public/assets/images/hall_entrada.jpg" alt="entrada">
+        <img class="d-block w-100" src="public/assets/images/hall_entrada.jpg" alt="entrada">
     </div>
 
     <div class="carousel-item">
-        <img class="d-block w-100" src="../public/assets/images/quarto.jpg" alt="quarto">
+        <img class="d-block w-100" src="public/assets/images/quarto.jpg" alt="quarto">
     </div>
 
     </div>
