@@ -12,7 +12,7 @@ class UserModel{
         $result = $sqlmt->get_result();
 
         if($user = $result->fetch_assoc()){
-            if($user['senha'] === $password){
+            if(passwordController::validatehash($password, $user['senha'])){
                 unset($user['senha']);
                 return $user;
             }
