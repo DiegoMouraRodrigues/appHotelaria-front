@@ -1,11 +1,13 @@
-export async function  loginRequest(email, senha) {
-    const response = await fetch("/api/login.php", {
+export async function loginRequest(email, senha) {
+    const dados = {email, senha};
+    const response = await fetch("api/login", {
         method: "POST",
         headers:{
             "Accept": "application/json",
-            "content-type": "application/x-www-form-urlencoded;charset=UTF-8"
+            "Content-Type": "application/json"
         },
-        body: new URLSearchParams({email, senha}).toString(), 
+        body: JSON.stringify(dados),
+        // body: new URLSearchParams({email, senha}).toString(), 
         
         //URL da requisição é da mesma origem do front (mesmo protocolo http/mesmo 
         //dominio - local/mesmo porta 80 do servidor web Apache)
@@ -18,15 +20,37 @@ export async function  loginRequest(email, senha) {
     let data = null;
     try{
         data = await response.json();
+        console.log(data);
     }catch{
         //se não for JSON valido, data permanece null
-        data - null;
+        data = null;
     }
 
-    return{
+    if (!data || !data.token){
+        const message = "Resposta invalida do servidor. token ausente";
+        return{ok: false, token: null, raw: data, message};
+    }
+
+    return {
         ok: true,
-        user: data.user ?? null,
+        token: data.token,
         raw: data
     }
-
 }
+    //funçao para salvar achave token apos autenticação confirmada,
+    //ao salvar no local storage, o usuario podera mudar de pagina, fechar
+    //o site e ainda assim permanecer logado, desde que o tempo nao tenha
+    //expirado(1h)
+    export function saveToken(token){
+        localStorage.setItem("auth_token", token);
+    }
+
+    // recuperar a chave a cada pagina que o usuario navegar
+    export function getToken(){
+        return localStorage.setItem("auth_token");
+    }
+
+    // função para remover a cahve do token quando o usuario deslogar
+    export function clearToken(){
+        localStorage.removeItem("auth_token");
+    }

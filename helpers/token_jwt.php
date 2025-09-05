@@ -21,7 +21,7 @@ function verify_token($token){
         return $decode->sub;
 
     }catch(Exception $error){
-        return "deu erro";
+        return false;
     }
 }
 

@@ -1,6 +1,7 @@
-import { loginRequest } from "../api/authAPI.js";
+import { loginRequest, saveToken } from "../api/authAPI.js";
 import Form from "../components/Form.js";
 import Navbar from "../components/Navbar.js";
+import Footer from "../components/footer.js";
 
 export default function renderLoginPage() { 
     const nav = document.getElementById('navbar');
@@ -8,14 +9,18 @@ export default function renderLoginPage() {
     
     const navbar = Navbar();
     nav.appendChild(navbar);
+        
+    const fot = document.getElementById('footer');
+    fot.innerHTML = '';
 
-    Form();
+    const footer = Footer();
+    fot.appendChild(footer);
 
-    const formulario = form();
+    const formulario = Form();
     const contentform = formulario.querySelector('form');
     //imputs e botão presentes no form
-    const imputEmail = contentform.querySelector('imput[type="email"]');
-    const imputSenha = contentform.querySelector('imput[type="password"]');
+    const imputEmail = contentform.querySelector('input[type="email"]');
+    const imputSenha = contentform.querySelector('input[type="password"]');
     const btn = contentform.querySelector('button[type="submit"]');
 
     //Monitora o clique no botão para acionar um evento de submeter os dados do form
@@ -27,7 +32,9 @@ export default function renderLoginPage() {
         try{
             const result = await loginRequest(email, senha);
             console.log("login realizado com sucesso");
-            //window.location.pathname = /home;
+            console.log(result);
+            saveToken(result.token);
+            window.location.pathname = "estudo_diegoM/home";
 
         }catch{
             console.log("erro inesperado!");

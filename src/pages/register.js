@@ -1,5 +1,6 @@
 import Form from "../components/Form.js";
 import Navbar from "../components/Navbar.js";
+import Footer from "../components/footer.js";
 
 export default function renderRegisterPage() {
     const nav = document.getElementById('navbar');
@@ -7,6 +8,13 @@ export default function renderRegisterPage() {
     
     const navbar = Navbar();
     nav.appendChild(navbar);
+
+
+    const fot = document.getElementById('footer');
+    fot.innerHTML = '';
+    
+    const footer = Footer();
+    fot.appendChild(footer);
 
     const formulario = Form();
    
