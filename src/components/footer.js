@@ -1,4 +1,4 @@
-export default function Footer(){
+export default function footer(){
     const containerFooter = document.createElement('div');
     containerFooter.innerHTML =
     `
