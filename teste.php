@@ -4,15 +4,15 @@
     require_once __DIR__ . "/helpers/token_jwt.php"; 
     require_once __DIR__ . "/controller/quartosController.php";
 
-    //inserir informação
-    //  $data = [ 
-    //     "nome"=> "bruna",
-    //     "numero"=> "2", 
-    //     "camaSolteiro"=> "0" ,
-    //     "camaCasal"=> "1",
-    //     "disponivel"=> "1", 
-    //     "preco"=> "100.00"
-    //  ];
+    // inserir informação
+     $data = [ 
+        "nome"=> "superior",
+        "numero"=> "2", 
+        "camaSolteiro"=> "0" ,
+        "camaCasal"=> "1",
+        "disponivel"=> "1", 
+        "preco"=> "100.00"
+     ];
 
     // $data = [ 
     //     "nome"=> "delux",
@@ -34,12 +34,12 @@
 
     //  QuartosController::create($conn, $data);  // esta inserindo a informação no bando e confimando que foi inserido ou não a infomação; 
 
-    $data = [ 
-        "email"=>"diego@hotmail.com",
-        "senha"=>"1234"
-    ];
+    // $data = [ 
+    //     "email"=>"diego@hotmail.com",
+    //     "senha"=>"1234"
+    // ];
 
-    authController::login($conn, $data);  //esta verificando se vai ou nao inserir a informação do usuario
+    // authController::login($conn, $data);  //esta verificando se vai ou nao inserir a informação do usuario
     
 
     // $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtZXVzaXRlIiwiaWF0IjoxNzU2OTMwMzAxLCJleHAiOjE3NTY5MzM5MDEsInN1YiI6eyJpZCI6MTEsIm5vbWUiOiJ0ZXN0ZSIsImVtYWlsIjoiZGllZ29AaG90bWFpbC5jb20iLCJjYXJnbyI6IkFkbWluaXN0cmFkb3IifX0.PWgTbwKQm3dGR5oJ6Rj3O93gFHldGv7xkLaNzkupwDQ";
