@@ -4,7 +4,7 @@ export default function Hero(){
     containerHero.className = 'hero w-100 d-flex justify-content-center';
     containerHero.innerHTML =
     `
-    <div class = "hero-flame rounded-4  w-100">
+    <div class = "hero-flame w-100">
     <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -23,7 +23,7 @@ export default function Hero(){
         </div>
 
         <div class="carousel-item">
-            <img class="d-block w-100" src="public/assets/images/quarto.jpg" alt="quarto">
+            <img class="d-block w-100" src="public/assets/images/quartos.jpg" alt="quarto">
         </div>
 
     </div>

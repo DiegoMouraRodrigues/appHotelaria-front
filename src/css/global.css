@@ -1,4 +1,4 @@
-#root{
+#root {
     flex-direction: column;
 }
 
@@ -29,25 +29,30 @@ input {
     border-color: rgb(3, 65, 136);
 }
 /*hero selection*/
-.hero-flame{
-    height: 80vh;
-    max-width: 1200px;
-    margin: 0 auto;
+.hero-flame {
     overflow: hidden; /*impede que a imagem vaze do quadro*/
-    background: #fdfdfd; /*aplicar cor no fundo quando a imagem nao ocupa todo o espaço*/
+
 }
 
-.hero-img{
-    width: 100%;
-    height: 100%;
+.hero img {
     /*aplica propiedade cover para que a imagem preecha o quadro*/
     object-fit: cover; 
     object-position: center; /*centraliza o recorte da imagem */
+    height: 70vh;
 }
 
-@media(max-width: 576px){
+@media(max-width: 576px) {
     .hero-flame{
         height: 50vh;
     }
     
 }
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
