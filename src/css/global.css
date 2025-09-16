@@ -48,6 +48,18 @@ input {
     
 }
 
+#root{
+    flex-direction: column;
+}
+
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
 
 .container {
     display: flex;
