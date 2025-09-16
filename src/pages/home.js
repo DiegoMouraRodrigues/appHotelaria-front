@@ -23,17 +23,18 @@ export default function renderCarroselPage() {
     DivRoot.appendChild(hero);
 
     //grupo para incorporar cada div de cada cartd, para aplicar display-flex
-    const cardGroup = document.getElement('div');
+    const cardGroup = document.createElement('div');
     cardGroup.innerHTML = '';
-    cardGroup.cless = '';
+    cardGroup.className = 'cards';
 
-    for(var i =0; i < 3; i++){
-    const cards = roomCard();
-    DivRoot.appendChild(cards);
+    for(var i = 0; i < 3; i++){
+        const cards = roomCard();
+        cardGroup.appendChild(cards);
     }
 
     DivRoot.appendChild(cardGroup);
-
+    
+ 
     const fot = document.getElementById('footer');
     fot.innerHTML = '';
 
