@@ -3,16 +3,33 @@
     require_once __DIR__ . "/controller/passwordController.php";
     require_once __DIR__ . "/helpers/token_jwt.php"; 
     require_once __DIR__ . "/controller/quartosController.php";
+    require_once __DIR__ . "/controller/clientController.php";
 
-    // inserir informação
-     $data = [ 
-        "nome"=> "superior",
-        "numero"=> "2", 
-        "camaSolteiro"=> "0" ,
-        "camaCasal"=> "1",
-        "disponivel"=> "1", 
-        "preco"=> "100.00"
+
+
+
+
+    
+     $data = [
+        "nome" => "luis",
+        "email"=> "luis@hotmail.com",
+        "cpf" => "435.768.980-56",
+        "telefone"=> "(15)97745-3456",
+        "senha"=> "5432",
+        "fk_permissao_id"=> ""
      ];
+
+
+    
+    // inserir informação
+    //  $data = [ 
+        // "nome"=> "superior",
+        // "numero"=> "2", 
+        // "camaSolteiro"=> "0" ,
+        // "camaCasal"=> "1",
+        // "disponivel"=> "1", 
+        // "preco"=> "100.00"
+    //  ];
 
     // $data = [ 
     //     "nome"=> "delux",
@@ -24,15 +41,15 @@
         
     //  ];
 
-    //  QuartosController::atualizar($conn, 4, $data); //atuando dados do quartos
-
-    
+    // QuartosController::atualizar($conn, 4, $data); //atuando dados do quartos
     // QuartosController::delete($conn, 2); //esta deletando a partir do id informado
-
     // QuartosController::getById($conn, 4); //pesquisa a partir do id do quarto
     // QuartosController::getAll($conn) //pesquisa todas as informação contida no quartos
-
-    //  QuartosController::create($conn, $data);  // esta inserindo a informação no bando e confimando que foi inserido ou não a infomação; 
+    // QuartosController::create($conn, $data);  // esta inserindo a informação no bando e confimando que foi inserido ou não a infomação;
+   
+    // clientController::getAll($conn); 
+    // clientController::getById($conn,2);
+    clientController::create($conn, $data); 
 
     // $data = [ 
     //     "email"=>"diego@hotmail.com",
