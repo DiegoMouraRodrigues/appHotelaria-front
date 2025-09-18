@@ -4,42 +4,17 @@
     require_once __DIR__ . "/helpers/token_jwt.php"; 
     require_once __DIR__ . "/controller/quartosController.php";
     require_once __DIR__ . "/controller/clientController.php";
+ 
 
 
 
 
 
     
-     $data = [
-        "nome" => "luis",
-        "email"=> "luis@hotmail.com",
-        "cpf" => "435.768.980-56",
-        "telefone"=> "(15)97745-3456",
-        "senha"=> "5432",
-        "fk_permissao_id"=> ""
-     ];
-
-
     
-    // inserir informação
-    //  $data = [ 
-        // "nome"=> "superior",
-        // "numero"=> "2", 
-        // "camaSolteiro"=> "0" ,
-        // "camaCasal"=> "1",
-        // "disponivel"=> "1", 
-        // "preco"=> "100.00"
-    //  ];
 
-    // $data = [ 
-    //     "nome"=> "delux",
-    //     "numero"=> "5", 
-    //     "camaSolteiro"=> "3" ,
-    //     "camaCasal"=> "4",
-    //     "disponivel"=> "3", 
-    //     "preco"=> "335.00",
-        
-    //  ];
+  
+   
 
     // QuartosController::atualizar($conn, 4, $data); //atuando dados do quartos
     // QuartosController::delete($conn, 2); //esta deletando a partir do id informado
@@ -49,7 +24,12 @@
    
     // clientController::getAll($conn); 
     // clientController::getById($conn,2);
-    clientController::create($conn, $data); 
+    // clientController::create($conn, $data);
+    // clientController::atualizar($conn, 5, $data);
+    // clientController::delete($conn,5);
+    
+    
+    
 
     // $data = [ 
     //     "email"=>"diego@hotmail.com",

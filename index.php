@@ -23,7 +23,7 @@
         exit;
 
     }elseif($route === "api"){
-        if(in_array($subRoute, ["login", "quartos"])){
+        if(in_array($subRoute, ["login", "quartos", "clientes"])){
             require "rotas/${subRoute}.php";
         }else{
             return jsonResponse(['message'=> 'rota do api encrontrada'], 404);
