@@ -1,40 +1,38 @@
 export default function dateSelector(){
-const containerSelector = document.createElement('div');
-containerSelector.innerHTML = 
+const divDate = document.createElement('div');
+divDate.className = 'divDate';
+
+const dateCheckIn = document.createElement('input');
+dateCheckIn.type = 'date';
+dateCheckIn.className = 'card p-3 m-0 shadow-lg';
+
+const dateCheckInOut = document.createElement('input');
+dateCheckInOut.type = 'date';
+dateCheckInOut.className = 'card p-3 m-0 shadow-lg ';
+
+const guestAmount = document.createElement('select');
+guestAmount.className = 'card p-3 shadow-lg';
+guestAmount.innerHTML = 
 `
-<div class="container">
-  <form class="row g-2 align-items-center justify-content-center">
-  
-    <!-- Destino -->
-    <div class="col-md-3">
-      <div class="input-group">
-        <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-        <input type="text" class="form-control" placeholder="Para onde você vai?">
-      </div>
-    </div>
+<option value="">Quantas Pessoas?</option>
+<option value="1">1 pessoa</option>
+<option value="2">2 pessoas</option>
+<option value="3">3 pessoas</option>
+<option value="4">4 pessoas</option>
+<option value="5">5 pessoas</option>
+`;
 
-    <!-- Datas -->
-    <div class="col-md-3">
-      <div class="input-group">
-        <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-        <input type="text" class="form-control" placeholder="20 de set. - 22 de set.">
-      </div>
-    </div>
+const btnSearchRoom = document.createElement('button');
+btnSearchRoom.type = 'submit';
+btnSearchRoom.textContent = 'pesquisar';
+btnSearchRoom.className = 'btn btn-primary';
 
-    <!-- Viajantes -->
-    <div class="col-md-3">
-      <div class="input-group">
-        <span class="input-group-text"><i class="bi bi-person"></i></span>
-        <input type="text" class="form-control" placeholder="2 viajantes, 1 quarto">
-      </div>
-    </div>
 
-    <!-- Botão -->
-    <div class="col-md-2 d-grid">
-      <button class="btn btn-dark" type="submit">Buscar</button>
-    </div>
-  </form>
-</div>
-`
-return containerSelector;
+divDate.appendChild(dateCheckIn);
+divDate.appendChild(dateCheckInOut);
+divDate.appendChild(guestAmount);
+divDate.appendChild(btnSearchRoom);
+
+return divDate;
+
 }
