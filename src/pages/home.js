@@ -21,7 +21,6 @@ export default function renderCarroselPage() {
     const datePesquisar = dateSelector();
     DivRoot.appendChild(datePesquisar);
 
-
     //grupo para incorporar cada div de cada cartd, para aplicar display-flex
     const cardGroup = document.createElement('div');
     cardGroup.innerHTML = '';
@@ -34,10 +33,6 @@ export default function renderCarroselPage() {
 
     DivRoot.appendChild(cardGroup);
 
-    
-
-    
- 
     const fot = document.getElementById('footer');
     fot.innerHTML = '';
 

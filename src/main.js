@@ -1,13 +1,14 @@
 import renderLoginPage from "./pages/login.js";
 import renderRegisterPage from "./pages/register.js";
 import renderCarroselPage from "./pages/home.js";
+import renderCartPage from "./pages/card.js";
 
 //Configuraçao de rotas mapeadas
 const routes = {
    "/login": renderLoginPage,
    "/register": renderRegisterPage,
-   "/home": renderCarroselPage
-
+   "/home": renderCarroselPage,
+   "/card": renderCartPage
 };
 
 //Obtém o caminho atual a partir do nome
