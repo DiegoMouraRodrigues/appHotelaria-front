@@ -4,33 +4,25 @@
     require_once __DIR__ . "/helpers/token_jwt.php"; 
     require_once __DIR__ . "/controller/quartosController.php";
     require_once __DIR__ . "/controller/clientController.php";
- 
+    require_once __DIR__ . "/controller/adicionaisController.php";
+    require_once __DIR__ . "/controller/pedidosController.php";
 
-
-
-
-
-    
-    
+ $data = [
+         "id_usuario_fk" => 3,
+         "id_cliente_fk" => 2,
+        "preco" => "pix"
+     
+     ];
 
   
-   
+  
 
-    // QuartosController::atualizar($conn, 4, $data); //atuando dados do quartos
-    // QuartosController::delete($conn, 2); //esta deletando a partir do id informado
-    // QuartosController::getById($conn, 4); //pesquisa a partir do id do quarto
-    // QuartosController::getAll($conn) //pesquisa todas as informação contida no quartos
-    // QuartosController::create($conn, $data);  // esta inserindo a informação no bando e confimando que foi inserido ou não a infomação;
-   
-    // clientController::getAll($conn); 
-    // clientController::getById($conn,2);
-    // clientController::create($conn, $data);
-    // clientController::atualizar($conn, 5, $data);
-    // clientController::delete($conn,5);
-    
-    
-    
+  
+   PedidoController::create($coon, $data);
+//    PedidoController::getAll($coon);
+//    PedidoController::getId($coon,)
 
+    
     // $data = [ 
     //     "email"=>"diego@hotmail.com",
     //     "senha"=>"1234"
