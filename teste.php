@@ -6,21 +6,14 @@
     require_once __DIR__ . "/controller/clientController.php";
     require_once __DIR__ . "/controller/adicionaisController.php";
     require_once __DIR__ . "/controller/pedidosController.php";
+    require_once __DIR__ . "/controller/reservaController.php";
 
- $data = [
-         "id_usuario_fk" => 3,
-         "id_cliente_fk" => 2,
-        "preco" => "pix"
-     
-     ];
-
+   
   
   
 
-  
-   PedidoController::create($coon, $data);
-//    PedidoController::getAll($coon);
-//    PedidoController::getId($coon,)
+    // reservasController::create($conn, $data);
+    // reservasController::getAll($conn);
 
     
     // $data = [ 
