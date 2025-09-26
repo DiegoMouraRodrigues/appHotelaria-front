@@ -4,6 +4,7 @@ import Footer from "../components/footer.js";
 import roomCard from "../components/roomCard.js";
 import dateSelector from "../components/dateSelector.js";
 
+
 export default function renderCarroselPage() {
     
     const DivRoot = document.getElementById('root');
@@ -32,6 +33,8 @@ export default function renderCarroselPage() {
 }
 
     DivRoot.appendChild(cardGroup);
+
+    
 
     const fot = document.getElementById('footer');
     fot.innerHTML = '';

@@ -1,47 +1,57 @@
 <?php
 require_once __DIR__ . "/../controller/quartosController.php";
 
-//pesquisar
-if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    $id = $segments[2] ?? null;
-    if(isset($id)){
-        QuartosController::getById($conn, $id);
-    }else{
-        QuartosController::getAll($conn);
-    }
 
-//criar
-}
-elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $data = json_decode(file_get_contents('php://input'), true);
-    QuartosController::create($conn, $data);
-}
 
-//atualizar
-elseif  ($_SERVER['REQUEST_METHOD'] === "PUT"){
-    $data = json_decode(file_get_contents('php://input'), true);
-    $id = $data['id'] ?? null;
-    QuartosController::atualizar( $conn, $id, $data);
+$method = $_SERVER['REQUEST_METHOD'];
+$resource = $seguimentos[3] ?? null; 
+$param = $seguimentos[2] ?? null;    
 
-}
+switch ($method) {
+    case "GET":
+        if ($param === 'disponiveis') {
+            $inicio = isset($_GET['checkin']) ? $_GET['checkin'] : null;
+            $fim = isset($_GET['checkout']) ? $_GET['checkout'] : null;
+            $capacidade = isset($_GET['pessoas']) ? $_GET['pessoas'] : null;
+            jsonResponse(['message'=>[$inicio, $fim, $capacidade]], 200);
+        }
+        elseif ($id = $seguimentos[2] ?? null) {
+            QuartosController::getId($conn, $id);
+        }else{
+            QuartosController::getAll($conn);
+        }
 
-//deletar
-elseif($_SERVER['REQUEST_METHOD'] === "DELETE"){
-    $id = $segments[2] ?? null;
+        break;
 
-    if(isset($id)){
-        QuartosController::delete($conn, $id);
-    }else{
-        jsonResponse(['message' => 'Id não definido'], 400);
-    }
-}
+    case "DELETE":
+        $id = $seguimentos[2] ?? null;
+        if ($id) {
+            QuartosController::delete($conn, $id);
+        } else {
+            jsonResponse(["message" => "Id necessário!"], 400);
+        }
+        break;
 
-else {
-    jsonResponse([
-        'status' => 'erro',
-        'message' => 'Método não permitido'
+    case "POST":
+        $data = json_decode(file_get_contents('php://input'), true);
+        QuartosController::create($conn, $data);
+        break;
 
-    ], 404);
+    case "PUT":
+        $data = json_decode(file_get_contents('php://input'), true);
+        $id = $data['id'] ?? null;
+        if ($id) {
+            QuartosController::atualizar($conn, $id, $data);
+        } else {
+            jsonResponse(["message" => "Id necessário no corpo da requisição!"], 400);
+        }
+        break;
 
+    default:
+        jsonResponse([
+            "status" => "erro",
+            "message" => "Método não permitido"
+        ], 400);
+        break;
 }
 ?>

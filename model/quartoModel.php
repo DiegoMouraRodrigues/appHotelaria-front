@@ -51,5 +51,31 @@ class quartoModel{
         );
         return $stmt -> execute();
     }
+
+     public static function buscarDisponiveis($conn,$data) {
+        $sql = "SELECT q.id, q.nome, q.camaSolteiro, q.camaCasa, q.disponivel, q.preco
+        FROM quartos q
+        WHERE q.id NOT IN (
+        SELECT
+        r.quarto_id
+        FROM
+        reservas r
+        WHERE
+        (r.fim >= ? AND r.inicio <= ?)
+        )
+        AND q.disponivel = true
+        AND ((q.camaSolteiro * 2) + q.camaCasa) >= ?;";
+
+        $stmt = $conn->prepare($sql);
+
+        $inicio = $data['dataInicio'];
+        $fim = $data['dataFim'];
+        $capacidade = $data['capacidade'] ?? 1;
+
+        $stmt->bind_param("ssi", $fim, $inicio, $capacidade);
+        return $stmt->execute();
+
+    }
+
 }
 ?>

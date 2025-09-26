@@ -2,40 +2,68 @@
 require_once __DIR__ . "/../model/quartoModel.php";
 
 class QuartosController{
-    public static function create($conn, $data){
+    public static function create($conn, $data)
+    {
+
+        $camposObrigatorios = ["nome", "numero", " camaSolteiro", "camaCasalo", "disponivel", "preco"];
+        $erros = [];
+
+        foreach ($camposObrigatorios as $campo) {
+            if (!isset($data[$campo]) || empty($data[$campo])) {
+                $erros[] = $campo;
+            }
+        }
+
+        if (!empty($erros)) {
+            return jsonResponse(['message' => 'Erro, falta o comando: ' . implode(',', $erros)], 404);
+        }
+
+
         $result = quartoModel::create($conn, $data);
-        if($result){
-            return jsonResponse(['message' => 'quarto criado com sucesso']);
-            //acertou
-        }else{
-            return jsonResponse(['message'=> 'erro ao cadastrar o quarto'], 400);
-            //errou
+        if ($result) {
+            return jsonResponse(['message' => 'Quarto criado com sucesso']);
+        } else {
+            return jsonResponse(['message' => 'Deu merda'], 400);
+        }
+    }
+    public static function getAll($conn)
+    {
+        $listaQuartos = quartoModel::getAll($conn);
+        return jsonResponse($listaQuartos);
+    }
+
+    public static function getId($conn, $id)
+    {
+        $listarporId = quartoModel::getId($conn, $id);
+        return jsonResponse($listarporId);
+    }
+
+    public static function delete($conn, $id)
+    {
+        $result = quartoModel::delete($conn, $id);
+        if ($result) {
+            return jsonResponse(['message' => 'Quarto deletado com sucesso']);
+        } else {
+            return jsonResponse(['message' => 'Falha ao deletar'], 400);
         }
     }
 
-    public static function getAll($conn){
-        $QuartoList = quartoModel::getAll($conn);
-        return jsonResponse($QuartoList); 
-    }    
-
-    public static function getById($conn, $id){
-        $QuartoList = quartoModel::getId( $conn, $id );
-        return jsonResponse($QuartoList);
+    public static function atualizar($conn, $id, $data)
+    {
+        $result = quartoModel::atualizar($conn, $id, $data);
+        if ($result) {
+            return jsonResponse(['message' => 'Quarto atualizado com sucesso']);
+        } else {
+            return jsonResponse(['message' => 'Falha ao atualizar o quarto'], 400);
+        }
     }
 
-   public static function delete($conn, $id){
-    $QuartoDelete = quartoModel::delete($conn, $id);
-    return jsonResponse($QuartoDelete);
-   }
-
-    public static function atualizar($conn, $id, $data){
-        $QuartoAtualizar = quartoModel::atualizar($conn, $id, $data);
-        if($QuartoAtualizar){
-            return jsonResponse(['message' => 'quarto atualizado com sucesso']);
-            //acertou
-        }else{
-            return jsonResponse(['message'=> 'erro ao cadastrar o quarto'], 400);
-            //errou
+       public static function buscarDisponivel($conn,$data) {
+        $resultado = quartoModel::buscarDisponiveis($conn,$data);
+        if ($resultado !== false && !empty($resultado)) {
+            return jsonResponse(['mesage'=>"quartos Disponiveis", 'data'=> $resultado]);
+        } else {
+            return jsonResponse(['mesage'=>"erro ao buscar quartos disponiveis"],400);
         }
     }
          

@@ -30,7 +30,7 @@ export default function roomCard(index){
       </button>
 
       <button class="carousel-control-next" type="button" data-bs-target="#${index}" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
