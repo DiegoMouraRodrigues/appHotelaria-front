@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../model/clientModel.php";
 require_once __DIR__ . "/../controller/passwordController.php";
 require_once __DIR__ . "/../helpers/token_jwt.php";
+require_once __DIR__ . "/authController.php";
 
 class clientController
 {
@@ -19,11 +20,19 @@ class clientController
 
     public static function create($conn, $data)
     {
+        
+        $login = [
+            "email" => $data["email"],
+            "senha" => $data["senha"]
+        ];
+
         $data['senha'] = passwordController::generatehash($data['senha']);
         $result = clientModel::create($conn, $data);
+
         if ($result) {
-            return jsonResponse(['message' => 'cliente criado com sucesso']);
             //acertou
+            authController::loginCliente($conn, $login);
+
         } else {
             return jsonResponse(['message' => 'erro ao cadastrar o cliente'], 400);
             //errou
@@ -64,7 +73,7 @@ class clientController
                 401
             );
         }
-        $user = ClientModel::validateUser($conn, $data['email'], $data['senha']);
+        $user = ClientModel::validateClient($conn, $data['email'], $data['senha']);
         if ($user) {
         $token = create_Token($user);
         return jsonResponse([ "token" => $token ]);

@@ -34,7 +34,7 @@ export default function renderLoginPage() {
             console.log("login realizado com sucesso");
             console.log(result);
             saveToken(result.token);
-            window.location.pathname = "estudo_diegoM/home";
+            // window.location.pathname = "estudo_diegoM/home";
 
         }catch{
             console.log("erro inesperado!");
