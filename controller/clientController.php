@@ -20,7 +20,7 @@ class clientController
 
     public static function create($conn, $data)
     {
-        
+        ValidatorController::validate_data($data, ["email, senha", "cpf", "telefone"]);
         $login = [
             "email" => $data["email"],
             "senha" => $data["senha"]

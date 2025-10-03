@@ -1,13 +1,14 @@
 <?php
 require_once __DIR__ ."/../model/pedidoModel.php";
     class PedidoController{
-         public static function create($conn, $data){
+        public static function create($conn, $data){    
+        ValidatorController::validate_data($data, ["id_usuario_fk", "id_cliente_fk", "pagamento"]);
         $result = PedidoModel::create($conn, $data);
         if($result){
-            return jsonResponse(['message' => 'adicionais criado com sucesso']);
+            return jsonResponse(['message' => 'pedido criado com sucesso']);
             
         }else{
-            return jsonResponse(['message'=> 'erro ao cadastrar o adicionais'], 400);
+            return jsonResponse(['message'=> 'erro ao cadastrar o pedido'], 400);
             
         }
     }

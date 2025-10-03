@@ -46,9 +46,7 @@ class clientModel{
     }
 
         public static function validateClient($conn, $email, $password){
-        //$sql = "SELECT * FROM usuarios WHERE email = ? ";
         $sql = "SELECT c.id, c.nome, c.email, c.senha, permissao.nome AS cargo FROM clientes AS c JOIN permissao ON permissao.id = c.fk_permissao_id WHERE c.email = ?";
-
         $sqlmt = $conn->prepare($sql);
         $sqlmt->bind_param("s", $email);
         $sqlmt->execute();

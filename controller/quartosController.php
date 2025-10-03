@@ -1,11 +1,12 @@
 <?php
 require_once __DIR__ . "/../model/quartoModel.php";
+require_once __DIR__ ."/validadorController.php";
 
 class QuartosController{
     public static function create($conn, $data)
     {
-
-        $camposObrigatorios = ["nome", "numero", " camaSolteiro", "camaCasalo", "disponivel", "preco"];
+         ValidatorController::validate_data($data, ["nome", "numero", "camaSolteiro", "camaCasal", "disponivel", "preco"]);
+        $camposObrigatorios = ["nome", "numero", " camaSolteiro", "camaCasal", "disponivel", "preco"];
         $erros = [];
 
         foreach ($camposObrigatorios as $campo) {
@@ -59,9 +60,15 @@ class QuartosController{
     }
 
        public static function buscarDisponivel($conn,$data) {
-        $resultado = quartoModel::buscarDisponiveis($conn,$data);
-        if ($resultado !== false && !empty($resultado)) {
-            return jsonResponse(['mesage'=>"quartos Disponiveis", 'data'=> $resultado]);
+        ValidatorController::validate_data($data, ["dataInicio", "dataFim", "qtd"]);
+
+        $data["dataInicio"] = ValidatorController::fix_dateHour($data["dataInicio"], 14);
+        $data["dataFim"] = ValidatorController::fix_dateHour($data["dataFim"], 12);
+
+        $resultado = quartoModel::get_available($conn,$data);
+
+        if ($resultado) {
+            return jsonResponse(['Quartos' => $resultado]);
         } else {
             return jsonResponse(['mesage'=>"erro ao buscar quartos disponiveis"],400);
         }

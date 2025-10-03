@@ -4,6 +4,7 @@ require_once __DIR__ . "/../model/UserModel.php";
 require_once __DIR__ . "/../model/clientModel.php";
 require_once __DIR__ . "/../helpers/token_jwt.php";
 require_once "passwordController.php";
+require_once __DIR__ . "/validadorController.php";
 
 class authController{
     public static function login($conn, $data)

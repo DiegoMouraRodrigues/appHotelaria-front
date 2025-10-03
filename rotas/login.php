@@ -19,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         jsonResponse(['status' => 'erro', 'message' => 'rota não existe']);
     }
 
+    authController::login($conn, $data);
+
 } else {
     jsonResponse([
         'status' => 'erro',

@@ -1,27 +1,36 @@
-// retorna getToken() é uma funçao que retorna o valor do token
-//armazanado no localStorage(), para que o usuario permaneça logado mesmo que mude de pagina e nao tenha que
-//  "re-logar"
-import {getToken} from "./authAPI";
+//listar os quartos disponiveis de acordo com inicio, fim e qtd
+export async function listAvailableRoomsRequest({dataInicio, dataFim, qtd}){
+    const params = new URLSearchParams();
+    if(dataInicio) params.set("dataInicio", dataInicio);
+    if(dataFim) params.set("dataFim", dataFim);
+    if(qtd !== null && qtd !== "") params.set("qtd", String(qtd));
+    
+    const url = `api/quartos/disponiveis?${params.toString()}`;
 
-
-//listar todos os quartos independente dos filtros
-export async function listAllQuartosRequest(){
-
-    //retorna o valor do token armazenado (que comprova a autenticação
-    //do usuario)
-    const token = getToken();
-
-    //A função para listar os quartos precisa ser assincrona pois espera-se uma "promise" de que ao chamar
-    //o endpoint api/quartos (que executa o arquvo quartos.php no qual contem todas as requisiçãoes possiveis)
-    //este arquivo converte com a controller que, por sua vez, converte com a model (onde esta query SELECT)
-    const response = await fetch('api/quartos',{
+    const response = await fetch(url,{
         method: "GET",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        
         credentials: "same-origin"    
 
-    })
+    });
+
+    let data = null;
+    try{
+        data = await response.json();
+    }
+    catch{
+        data = null;
+    }
+
+    if(!response.ok){
+        const msg = data?.message || "falha ao buscar quartos disponiveis!";
+        return new Error(msg);
+    }
+    
+     const quartos =  Array.isArray(data?.Quartos) ? data.Quartos : [];
+     console.log(quartos);
+     return quartos;
 }
