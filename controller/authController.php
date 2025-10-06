@@ -40,12 +40,14 @@ class authController{
         }
         //validação
         $user = clientModel::validateClient($conn, $data['email'], $data['senha']);
+
         if ($user) {
             $token = create_Token($user);
             return jsonResponse(["token" => $token]);
         } else {
             return jsonResponse(
                 ["reposta" => "Erro", "message" => "Credenciais invalidas"],401);
+           
         }
     }
 

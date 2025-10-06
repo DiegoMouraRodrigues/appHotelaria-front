@@ -6,11 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     $opcao = $segments[2] ?? null;
 
-    if ($opcao == "clientes") {
+    if ($opcao == "cliente") {
         //clientes
         authController::loginCliente($conn, $data);
     } 
-    else if($opcao == "clientLogin") {
+    else if($opcao == "funcionario") {
         //funcionarios
         authController::login($conn, $data);
 

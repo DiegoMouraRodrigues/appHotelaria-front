@@ -39,5 +39,5 @@ export default function renderLoginPage() {
         }catch{
             console.log("erro inesperado!");
         }        
-    })
+    });
 }
