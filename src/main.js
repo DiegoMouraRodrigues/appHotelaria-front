@@ -1,31 +1,40 @@
 import renderLoginPage from "./pages/login.js";
+import renderHomePage from "./pages/home.js";
 import renderRegisterPage from "./pages/register.js";
-import renderCarroselPage from "./pages/home.js";
-import renderCartPage from "./pages/card.js";
+import RenderCarrinhoPage from "./pages/carrinho.js";
 
-//Configuraçao de rotas mapeadas
 const routes = {
-   "/login": renderLoginPage,
-   "/register": renderRegisterPage,
-   "/home": renderCarroselPage,
-   "/card": renderCartPage
+    "/login": renderLoginPage,
+    "/register": renderRegisterPage,
+    "/home":  renderHomePage,
+    "/carrinho": RenderCarrinhoPage
+    //Novas paginas aqui adicionadas conforme desenvolvidas
 };
 
-//Obtém o caminho atual a partir do nome
+//Obtem o caminho atual a parte do nome 
+
+// function getPath(){
+//     const url = (location.pathname || "").replace("/estudo_php/", "/").trim();
+//     return url && url.startsWith("/") ? url : "/home";
+// }
+
 function getPath() {
-   //exemplo: (ex. "/login")
-   const url = (location.pathname || "").replace("/estudo_diegoM/", "/").trim();
-   console.log(url);
-   //retorna url se começar com "/", se não, retorna "/home" como padrão
-   return url && url.startsWith("/") ? url : "/home";         
+    // Divide o caminho atual em partes
+    const pathParts = location.pathname.split('/').filter(Boolean); // remove vazios
+    // Remove o primeiro item (que é o nome da pasta do projeto)
+    pathParts.shift();
+    // Junta de novo as partes restantes
+    const path = '/' + pathParts.join('/');
+    return path;
 }
+
 
 //Decide o que renderizar com base na rota atual
-function renderRoutes() {
-   const url = getPath();  //Lê a rota atual, ex. "/register"
-   const render = routes[url] || routes["/home"]; //Busca esta rota no mapa
-   render(); //Executa a função de render na página atual
+function renderRoutes(){
+    const url = getPath(); // lê a rota atual exemplo: "/register"
+    const render = routes[url] || routes["/home"]; // Busca esta rota no mapa
+    render(); //Executa a função de render na pagina atual 
 }
 
-//Renderizacao
+//Renderização
 document.addEventListener('DOMContentLoaded', renderRoutes);

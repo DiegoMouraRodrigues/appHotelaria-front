@@ -1,30 +1,28 @@
 <?php
 require_once __DIR__ . "/jwt/jwt_include.php";
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
-use firebase\JWT\JWT;
-use firebase\JWT\Key;
-
-function create_Token($user){
-    $payLoad = [
-        "iss"=> "meusite", //nome do token
-        "iat"=> time(), //tempo inicio
-        "exp"=> time() + (60 * (60 * 1)), // 60 segundo *(60 minutos * 1hora) duração (tempo fim)
-        "sub"=> $user
+function createToken($user)
+{
+    $payload = [
+        "iss" => "meusite",
+        "iat" => time(),
+        "exp" => time() + (60 * (60 * 1)),
+        "sub" => $user
     ];
-    return JWt::encode($payLoad, SECRET_KEY, "HS256");
+    return JWT::encode($payload, SECRET_KEY, "HS256");
 }
-
-function verify_token($token){
-    try{
+function validateToken($token)
+{
+    try {
         $key = new Key(SECRET_KEY, "HS256");
-        $decode = JWt::decode($token, $key);
+        $decode = JWT::decode($token, $key);
         return $decode->sub;
-
-    }catch(Exception $error){
+    } catch (Exception $erro) {
         return false;
     }
 }
-
 function validateTokenAPI()
 {
     $headers = getallheaders();
@@ -33,10 +31,11 @@ function validateTokenAPI()
         exit;
     }
     $token = str_replace("Bearer ", "", $headers['Authorization']);
-    if(!verify_token($token)){
+    if(!validateToken($token)){
         jsonResponse(['message' => 'Token Invalido'], 401);
         exit;
     }
 }
+
 
 ?>

@@ -1,10 +1,9 @@
-export default function Hero(){
+export default function Hero() {
+  const containerHero = document.createElement("div");
+  containerHero.className = "heroContainer w-100 d-flex justify-content-center";
+  containerHero.innerHTML = `
     
-    const containerHero = document.createElement('div');
-    containerHero.className = 'hero w-100 d-flex justify-content-center';
-    containerHero.innerHTML =
-    `
-    <div class = "hero-flame w-100">
+<div class = "heroContainer-frame w-100">
     <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -15,15 +14,15 @@ export default function Hero(){
     <div class="carousel-inner shadow">
 
         <div class="carousel-item active">
-            <img class="d-block w-100" src="public/assets/images/hotel_frente.jpg" alt="hotel">
+            <img class="d-block w-100" src="public/assets/imgs/images2.jpg" alt="First slide">
         </div>
 
         <div class="carousel-item">
-            <img class="d-block w-100" src="public/assets/images/hall_de_entrada.jpg" alt="entrada">
+            <img class="d-block w-100" src="public/assets/imgs/images2.jpg" alt="Second slide">
         </div>
 
         <div class="carousel-item">
-            <img class="d-block w-100" src="public/assets/images/quartos.jpg" alt="quarto">
+            <img class="d-block w-100" src="public/assets/imgs/images3.jpg" alt="Third slide">
         </div>
 
     </div>
@@ -38,7 +37,6 @@ export default function Hero(){
         <span class="visually-hidden">Next</span>
     </button>
     </div>
-    
-</div>`
-    return containerHero;
+</div>`;
+  return containerHero;
 }

@@ -1,12 +1,12 @@
-<?php
+<?php 
 
-//  definindo as variaveis de conexao com o banco 
+// Definindo as variaveis de conexão com o banco de dados 
+
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASSWORD", "");
-define("DB_NAME", "hotelgrupo3");
+define("DB_NAME", "projecthotel");
 
-//definindo a chave secreta para segurança
-define("SECRET_KEY", "hotelgrupo3");
+define("SECRET_KEY", "projecthotel");
 
 ?>

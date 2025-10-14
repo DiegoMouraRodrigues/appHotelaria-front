@@ -1,72 +1,62 @@
-export async function loginRequest(email, senha) {
+export async function loginRequest(email, senha){
     const dados = {email, senha};
-    
-    //passar os paramentros do email do usuário 
-    // if(){ 
-
-    //se for usuario
-    // validateUser 
-    // }
-
-
-    // else(){// páramentro do email do funcionario){ 
-    // se for funcionario
-    // validateClient 
-    // };
-
-
-    
-    const response = await fetch("api/login", {
+    const response = await fetch("api/login/cliente", {
         method: "POST",
-        headers:{
+        headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
         body: JSON.stringify(dados),
-        // body: new URLSearchParams({email, senha}).toString(), 
-        
-        //URL da requisição é da mesma origem do front (mesmo protocolo http/mesmo 
-        //dominio - local/mesmo porta 80 do servidor web Apache)
-        //front: http://localhost/estudo_diegoM/public/index.html
-        //back: http://localhost/estudo_diegoM/api/login.php
-        credentials: "same-origin"
-    });
-    
-    //interpreta a resposta como JSON
+        // body: new URLSearchParams({ email, senha }).toString(),
+
+        /* URL da rquisição é a mesma da origem do front (mesmo protocolo http/mesmo dominio - local/mesma porta 80 do servidor web Apache)
+        Front: http://localhost/estudo_php/public/index.html
+        Back: http://localhost/estudo_php/api/login.php
+        */
+       credentials: "same-origin"
+    }); 
+
     let data = null;
+    // Interpreta a resposta como json
     try{
         data = await response.json();
-        console.log(data);
+
     }catch{
-        //se não for JSON valido, data permanece null
+        // Se nao for json valido, data permanece null
         data = null;
     }
-
-    if (!data || !data.token){
-        const message = "Resposta invalida do servidor. token ausente";
-        return{ok: false, token: null, raw: data, message};
+    
+    if(!data || !data.token){
+        const message = "Resposta invalida do servidor, Token invalido";
+        return {ok: false, token: null, raw: data, message};
     }
-
+    
     return {
         ok: true,
         token: data.token,
         raw: data
-    }
+    };
+
 }
-    //funçao para salvar achave token apos autenticação confirmada,
-    //ao salvar no local storage, o usuario podera mudar de pagina, fechar
-    //o site e ainda assim permanecer logado, desde que o tempo nao tenha
-    //expirado(1h)
+    /* Função para salvar a chave token após autenticação confirmada, ao salvar
+    no local storage, o usuario poderá mudar de pagina, fechar o site
+    e ainda assim permanecer logado, DESDE QUE NAO TENHA EXPIRADO (1 HORA)*/
     export function saveToken(token){
         localStorage.setItem("auth_token", token);
+        
     }
 
-    // recuperar a chave a cada pagina que o usuario navegar
+    /* Recuperar a chave a cada pagina que o usuario navegar*/
+
     export function getToken(){
-        return localStorage.setItem("auth_token");
+        return localStorage.getItem("auth_token");
+        
     }
 
-    // função para remover a cahve do token quando o usuario deslogar
+
+    /*Função para remover a chave token quando usuario deslogar */
+
     export function clearToken(){
         localStorage.removeItem("auth_token");
+
     }

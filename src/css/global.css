@@ -1,75 +1,163 @@
 #root {
-    flex-direction: column;
+  flex-direction: column;
+  gap: 5vh;
+  padding-bottom: 10vh; 
+}
+
+form {
+  padding: 13px 14px;
+}
+
+.registerButton {
+  margin-top: 15px;
+  color: white;
+}
+.registerButton:hover {
+  color: #dadfe0;
+}
+
+.registerContainer {
+  margin-top: 10px;
+  color: white;
 }
 
 .titulo {
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 25px;
-    margin-bottom: 20px;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 
 .btn {
-    font-family: "Latso", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 17px;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 17px;
 }
 
-input {
-    border-style: solid;
-    border-color: rgb(117, 171, 233);
-    border-radius: 10px;
-    margin-bottom: 15px;
+.btn-primary {
+  background-color: rgb(145, 146, 146);
+  border: none;
 }
 
 .btn-primary:hover {
-    background-color: rgb(3, 65, 136);
-    border-color: rgb(3, 65, 136);
-}
-/*hero selection*/
-.hero-flame {
-    overflow: hidden; /*impede que a imagem vaze do quadro*/
-
+  background-color: rgb(136, 136, 136);
+  border: none;
 }
 
-.hero img {
-    /*aplica propiedade cover para que a imagem preecha o quadro*/
-    object-fit: cover; 
-    object-position: center; /*centraliza o recorte da imagem */
-    height: 70vh;
+.btn-primary:focus {
+  background-color: rgb(136, 136, 136);
 }
 
-@media(max-width: 576px) {
-    .hero-flame{
-        height: 50vh;
-    }
-    
+.btn-primary:active {
+  background-color: rgb(136, 136, 136) !important;
+  border: none;
 }
 
-#root{
-    flex-direction: column;
-    gap: 10vh;
-    margin-bottom: 10vh;
+.inputs {
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 5px;
+  border: 1px solid #dbd5d5;
+}
+
+.heroContainer-frame {
+  overflow: hidden;
+}
+
+
+/* aplica propriedade cover para recortar parte da imagem ( e nao distorcê-la ), definindo meu ponto de foco a partir da propriedade object-position */
+.heroContainer img,
+.heroContainer {
+  object-fit: cover;
+  height: 70vh;
+  object-position: center;
+}
+
+.inputs:focus {
+  border: 1px solid #dbd5d5;
+  outline: none;
+}
+
+.DataCheck {
+  padding: 10px 10px;
+  border-radius: 10px;
+  margin: 10px;
+  text-align: center;
 }
 
 .cards{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 35px;
+  display: flex;
+  flex-direction: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 45px;
 }
 
 .divDate{
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btnReserva{
+  background-color: rgb(49, 87, 202) !important;
+  transition: all 0.1s ease;
+
+}
+
+.btnReserva:hover{
+  transform: scale(1.1);
+  background-color: rgb(24, 64, 182) !important;
+}
+/* 🌿 Navbar estilo natural e calma */
+
+/* ⚪ Navbar estilo minimalista */
+/* 🩰 Navbar estilo hotel moderno claro */
+.navbar {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 14px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  color: #3c4a60 !important; /* Azul acinzentado */
+  font-weight: 500;
+  margin-right: 20px;
+  transition: color 0.3s ease;
+}
+.nav-link:hover {
+  color: #6c8ebf !important; /* Azul suave */
+}
+
+.dropdown-menu {
+  background-color: #ffffff;
+  border: 1px solid #e6e6e6;
+}
+.dropdown-item {
+  color: #3c4a60;
+}
+.dropdown-item:hover {
+  background-color: #f0f4f8;
+}
+
+.btn-outline-success {
+  color: #3c4a60;
+  border-color: #3c4a60;
+}
+.btn-outline-success:hover {
+  background-color: #3c4a60;
+  color: #ffffff;
 }
 
 
+/* Responsividade Media Query */
 
-
-
+@media (max-width: 576px) {
+    .heroContainer img .heroContainer {
+      height: 50vh;
+    }
+}
