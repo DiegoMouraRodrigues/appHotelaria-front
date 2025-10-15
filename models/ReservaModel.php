@@ -29,5 +29,6 @@ class ReservaModel{
         return $result->num_rows > 0;
     }
 
+
 }   
 ?>

@@ -53,6 +53,12 @@ class PedidosModel{
                 // Para avaliar se o quarto está disponivel no intervalo de datas
                 // ReservaModel::isConflit();
 
+                if(!QuartosModel::isQuartoDisponivel($conn, $id, $inicio, $fim)){
+                    $reservas[] = "Quarto {$id} ja está reservado";
+                    continue;
+                }
+                
+
                 $reservarResult = ReservaModel::create($conn, [
                     "pedido_id"  => $pedido_id,
                     "quarto_id" => $id,

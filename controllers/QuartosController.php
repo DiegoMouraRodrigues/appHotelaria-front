@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../models/QuartosModel.php";
 require_once __DIR__ . "/ValidadorController.php";
+require_once __DIR__ . "/../models/PedidoModel.php";
 
 class QuartosController{
 
@@ -57,8 +58,9 @@ class QuartosController{
         }else{
             return jsonResponse(['message'=> 'Deu erro'], 400);
         }
-    }
 
+      
+    }
 
 }
 
