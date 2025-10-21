@@ -1,3 +1,16 @@
+function calculoDiaria(inicio, fim){
+    const inicio = "2026-01-01";
+    const fim = "2026-01-08";
+
+    const [yin, min,din] = String(checkin).split("_").map(Number);
+    const [yout, mout,dout] = String(checkin).split("_").map(Number);
+    
+    const tzin = Date.UTC(yin,min -1, din);
+    const tzout = Date.UTC(yout, mout -1, dout);
+
+    return Math.floor((tzin - tzout) / (1000 * 60 * 60 *24));
+}
+
 export default function RoomCard(itemcard, index = 0) {
   const { nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco } = itemcard || {};
   const title = nome;
@@ -51,7 +64,7 @@ export default function RoomCard(itemcard, index = 0) {
                 
                 <ul class="list-unstyled mb-2">
                     ${camas? `<li>${camas}</li>` : ""}
-                    ${preco != null ? `<li>Preco: R$ ${Number(preco).toFixed(2)}</li>` : ""}
+                    ${preco != null ? `<li>preço diaria R$ ${Number(preco).toFixed(2)}</li>` : ""}
                 </ul>
 
                 <a href="#" class="btn btn-primary">Reservar</a>

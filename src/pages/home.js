@@ -1,7 +1,7 @@
 import Hero from "../components/hero.js";
 import Navbar from "../components/NavBar.js";
 import Footer from "../components/footer.js";
-import RoomCard from "../components/RoomCard.js";
+import RoomCard from "../components/roomCard.js";
 import DateSelector from "../components/DateSelector.js";
 import { listAvaibleQuartosRequest } from "../api/roomsAPI.js";
 import Spinner from "../components/spinner.js";
