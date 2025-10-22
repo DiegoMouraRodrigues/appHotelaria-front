@@ -1,17 +1,9 @@
 export async function finisherOrder(item){
     const url = "api/pedido/reserva";
     const body = {
-     /*por enquanto para conseguimos testar o cliente id sera setado
-     no codigo amanha o jeff trataea o token que valida o cliente no back-end,
-
-     /*
-
-
-
-
-
         /*por enquanto ate termos um front para usuario setar
         front para usuairo setar forma de pagamento que desejar*/
+        cliente_id: 5,
         pagamento: "pix", 
         quartos: items.map(it => (
             {
