@@ -1,3 +1,27 @@
+export async function addRoom(formulario){
+    const formData = new formData(formulario);
+    const typeAccept = ['image/jpg', 'image/png'];
+    const arqv = formulario.querySelector('#formfilesMultiple');
+
+    const imgs = arqv.files;
+    for(let i = 0; i < imgs.lenght; i++){
+        if(!typeAccept.includes(imgs[i].type)){
+            throw new Error('Arquivo "${imgs[i].name}" não é surportado seleciona um arquvio jpg ou png');   
+        }
+    }
+    const url = 'api/quartos';
+    const response = await fetch(url, {
+        method: "POST",
+        boby: formData
+    });
+    if(!response.ok){
+        throw new Error(`erro ao enviar requisição: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
+
+}
+
 /* getToken() é uma função que retorna o valor do token armazenado no localStorage(), para que o usuario permaneça logado mesmo que mude 
 de pagina e nao tenha "re-logar" */
 

@@ -1,4 +1,7 @@
+import {addRoom} from '../api/roomsAPI.js';
+
 export default function FormRoom() {
+
     const DivRoot = document.getElementById('root');
     DivRoot.innerHTML = '';
     DivRoot.style.height = '100vh';
@@ -6,8 +9,8 @@ export default function FormRoom() {
     const container = document.createElement('div');
     container.className = 'card p-4 shadow-lg d-flex flex-row';
     container.style.width = '100%';
-    container.style.maxWidth = '900px';
-    container.style.height = '500px';
+    container.style.maxWidth = '950px';
+    container.style.height = '600px';
     container.style.border = 'none';
     container.style.backgroundColor = '#ffffff';
     container.style.backdropFilter = 'blur(10px) brightness(0.8)';
@@ -33,6 +36,7 @@ export default function FormRoom() {
 
     const formulario = document.createElement('form');
     formulario.className = 'd-flex flex-column';
+    
 
     const nome = document.createElement('input');
     nome.type = 'text';
@@ -40,6 +44,7 @@ export default function FormRoom() {
     nome.max = '50';
     nome.placeholder = "Digite o nome do quarto";
     nome.className = 'inputs';
+    nome.style.borderWidth = '0.15rem';
     formulario.appendChild(nome);
 
     const numero = document.createElement('input');
@@ -47,20 +52,27 @@ export default function FormRoom() {
     numero.style.textAlign = 'left';
     numero.placeholder = "Digite o numero";
     numero.className = 'inputs';
+    numero.style.borderWidth = '0.15rem';
     formulario.appendChild(numero);
-    const qtd_cama_casal = document.createElement('input');
-    qtd_cama_casal.type = 'number';
-    qtd_cama_casal.style.textAlign = 'left';
 
-    qtd_cama_casal.placeholder = 'Quantidade cama casal';
+    const qtd_cama_casal = document.createElement('select');
     qtd_cama_casal.className = 'inputs';
+    qtd_cama_casal.style.borderWidth = '0.15rem';
+    qtd_cama_casal.innerHTML = `
+    <option value="0">Quantidade de cama casal</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>`
     formulario.appendChild(qtd_cama_casal);
-    const qtd_cama_solteiro = document.createElement('input');
-    qtd_cama_solteiro.type = 'number';
-    qtd_cama_solteiro.style.textAlign = 'left';
 
-    qtd_cama_solteiro.placeholder = 'Quantidade cama solteiro';
+    const qtd_cama_solteiro = document.createElement('select');
     qtd_cama_solteiro.className = 'inputs';
+    qtd_cama_solteiro.style.borderWidth = '0.15rem';
+    qtd_cama_solteiro.innerHTML = `
+    <option value="0">Quantidade de cama solteiro</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>`
     formulario.appendChild(qtd_cama_solteiro);
 
     const preco = document.createElement('input');
@@ -68,7 +80,54 @@ export default function FormRoom() {
     preco.style.textAlign = 'left';
     preco.placeholder = 'Digite o preço do quarto';
     preco.className = 'inputs';
+    preco.style.borderWidth = '0.15rem';
     formulario.appendChild(preco);
+
+     const arqv = document.createElement('div');
+    arqv.innerHTML = `
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Imagens do quarto</label>
+            <input name="fotos[]" class="form-control" accept = "image/*" type="file" id="formFileMultiple" multiple>
+        </div>
+    `;
+    arqv.className = 'arquivo';
+    formulario.appendChild(arqv);
+
+    const disponibilidadeContainer = document.createElement('div');
+    disponibilidadeContainer.className = 'd-flex align-items-center mt-3';
+    disponibilidadeContainer.style.gap = '10px';
+    disponibilidadeContainer.style.justifyContent = 'center';
+
+    const perguntaDisponivel = document.createElement('h2');
+    perguntaDisponivel.textContent = 'O quarto está disponível?';
+    perguntaDisponivel.style.fontSize = '18px';
+    perguntaDisponivel.style.margin = '0';
+    perguntaDisponivel.style.color = '#000';
+
+    const disponivelSim = document.createElement('input');
+    disponivelSim.type = 'radio';
+    disponivelSim.name = 'disponivel';
+    disponivelSim.value = 'true';
+
+    const labelSim = document.createElement('label');
+    labelSim.textContent = 'Sim';
+    labelSim.style.marginRight = '10px';
+
+    const disponivelNao = document.createElement('input');
+    disponivelNao.type = 'radio';
+    disponivelNao.name = 'disponivel';
+    disponivelNao.value = 'false';
+
+    const labelNao = document.createElement('label');
+    labelNao.textContent = 'Não';
+
+    
+    disponibilidadeContainer.appendChild(perguntaDisponivel);
+    disponibilidadeContainer.appendChild(disponivelSim);
+    disponibilidadeContainer.appendChild(labelSim);
+    disponibilidadeContainer.appendChild(disponivelNao);
+    disponibilidadeContainer.appendChild(labelNao);
+    formulario.appendChild(disponibilidadeContainer);
 
     const btnSubmit = document.createElement('button');
     btnSubmit.type = 'submit';
@@ -81,5 +140,16 @@ export default function FormRoom() {
     container.appendChild(leftSide);
     container.appendChild(rightSide);
     DivRoot.appendChild(container);
+
+    formulario.addEventListener('submit', async(e) =>{
+        e.preventDeFault();
+        try{
+            const response = await addRoom(this);
+            console.log("reposta do servidor:" + response);
+        }
+        catch{
+            console.log("erro ao enviar requisição" + error.message);
+        }
+    })
 
 }
