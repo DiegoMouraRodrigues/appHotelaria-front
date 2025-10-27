@@ -1,6 +1,7 @@
-function calculoDiaria() {
-    const checkIn = "2026-01-01";
-    const checkOut = "2026-01-08";
+function calculoDiaria(checkIn, checkOut) {
+    //feito para teste
+    // const checkIn = "2026-01-01";
+    // const checkOut = "2026-01-08";
 
     const [yin, min, din] = String(checkIn).split("-").map(Number);
     const [yout, mout, dout] = String(checkOut).split("-").map(Number);
@@ -13,7 +14,7 @@ function calculoDiaria() {
 
 
 export default function RoomCard(itemcard, index = 0) {
-  const { nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco } = itemcard || {};
+  const { id, nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco } = itemcard || {};
   const title = nome;
 
   const camas = [
@@ -68,10 +69,48 @@ export default function RoomCard(itemcard, index = 0) {
                     ${preco != null ? `<li>Preço diaria: R$ ${Number(preco).toFixed(2)}</li>` : ""}
                 </ul>
 
-                <a href="#" class="btn btn-primary">Reservar</a>
+                <a href="#" class="btn btn-primary btn-reservar">Reservar</a>
              </div>
         </div>
   `;
+  containerCards.querySelector("btn-reservar").addEventListener('click', (e) => {
+    e.preventDefault();
+
+    //ler informação setads nos imputs dateCheckin. datecheckou e guestAmount(ids)
+    const idDAteCheckin = document.getElementById("id-dateCheckIn");
+    const idDAteChechout = document.getElementById("id-dateCheckOut");
+    const idGuestAmount = document.getElementById("id-guestAmount");
+    
+    const inicio = (idDAteCheckin?.value || "");
+    const fim = (idDAteChechout?.value || "");
+    const qtd = parseInt|(idGuestAmount?.value || "0", 10);
+
+    /*validação do preechimento de infos -> contexto; usuario pesquisou quartos
+    disponivel na hora de simplesmente reservar, usuario voltou ao campo de chck-in ou check-out
+    o limpou a informação de la, mas nao setou uma nova pesquisa p/ buscar novamente quartos
+    */
+   if(!inicio|| !fim || Number,isNaN(qtd) || qtd <= 0) {
+    console.log("preencha todos os dados");
+     return;
+   }
+   const daily = calculoDiaria(inicio, fim);
+
+   //calculo do subtotal do quarto (preço * n da diaria)
+   const subtotal = perseFloat(preco ?? 0) * daily;
+  
+   const novoItemReserva = {
+    id,
+    checkIn: inicio,
+    checkOut: fim,  
+    guests: qtd,
+    daily,
+    subtotal 
+   }
+  });
+  addItemToHotel_CArd(novoItemReserva);
+  //alerta pode seer trocado por um modal com melgor aparencia
+  alert('reserva adcionada: $[nome] -  preço/diaria: R$ ${preco} n de diarias ${daily} - subtotal ${subtotal}');
+
   console.log(calculoDiaria());
   return containerCards;
 }

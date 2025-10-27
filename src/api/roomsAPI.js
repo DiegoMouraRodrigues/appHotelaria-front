@@ -14,16 +14,21 @@ export async function addRoom(formulario){
         method: "POST",
         boby: formData
     });
-    if(!response.ok){
-        throw new Error(`erro ao enviar requisição: ${response.status}`);
+
+    // Interpreta a resposta como JSON
+    let result = null;
+    try {
+        result = await response.json();
     }
-    const result = await response.json();
-    return result;
-
+    catch {
+        // Se não for JSON válido, result permanece null
+        result = null;
+    }
+    if(!response.ok) {
+        throw new Error(`Erro ao enviar requisição: ${response.status}`);
+    }
+    return result; 
 }
-
-/* getToken() é uma função que retorna o valor do token armazenado no localStorage(), para que o usuario permaneça logado mesmo que mude 
-de pagina e nao tenha "re-logar" */
 
 // Listar os quartos disponiveis de acordo com o inicio fim e quantidade
 export async function listAvaibleQuartosRequest({ inicio, fim, qtd }){

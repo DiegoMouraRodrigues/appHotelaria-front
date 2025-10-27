@@ -35,6 +35,11 @@ export default function renderHomePage() {
     dateCheckIn.min = hoje;
     dateCheckOut.min = hoje;
 
+    dateCheckIn.id = 'id-datecheckin';
+    dateCheckOut.ad = 'id-dateChechout';
+    guestAmount.id = 'id-guestAmount';
+    
+
     const guestAmount = datePesquisar.querySelector('select');
     const btnSearchRoom = datePesquisar.querySelector('button');
 

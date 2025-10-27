@@ -141,6 +141,9 @@ export default function FormRoom() {
     container.appendChild(rightSide);
     DivRoot.appendChild(container);
 
+    const btnRegisterRoom = contentForm.querySelector('button');
+    btnRegisterRoom.textContent = 'Cadastrar';
+
     formulario.addEventListener('submit', async(e) =>{
         e.preventDeFault();
         try{
