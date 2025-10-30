@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../controllers/PedidoController.php";
 
+
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
     $data = json_decode(file_get_contents('php://input'), true);
     $id = $data["id"] ?? null;
@@ -13,9 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 }
 
 elseif($_SERVER['REQUEST_METHOD'] === "POST"){
-    $opcao = $seguimentos[2] ?? null;
-    $data = json_decode(file_get_contents('php://input'), true);
     
+
+    $opcao = $seguimentos[2] ?? null;
+    $user = validateTokenAPI("Cliente");   
+    $data = json_decode(file_get_contents('php://input'), true);
+    $data['cliente_id'] = $user['id'];
     if($opcao == "reserva"){
         PedidosController::createOrder($conn, $data);
     }else{

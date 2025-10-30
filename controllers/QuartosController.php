@@ -1,27 +1,30 @@
+
 <?php
 require_once __DIR__ . "/../models/QuartosModel.php";
 require_once __DIR__ . "/ValidadorController.php";
-require_once __DIR__ . "/../models/PhotoModel.php";
 require_once __DIR__ . "/UploadController.php";
-
+require_once __DIR__ . "/../models/PhotoModel.php";
 
 class QuartosController{
 
     public static function create($conn, $data){
-        ValidatorController::validate_data($data, ["nome", "numero", "qtd_casal", "qtd_solteiro", "preco", "disponivel"]);
+        ValidatorController::validate_data($data, ["nome", "numero", "qtd_cama_casal", "qtd_cama_solteiro", "preco", "disponivel"]);
 
         $result = QuartosModel::create($conn, $data);
         if ($result){
-            if($result['fotos']){
-                $pictures = UploadController:: uploads($data['fotos']);
+            if($data['fotos']){
+                $pictures = UploadController::uploads($data['fotos']);
+                foreach($pictures['saves'] as $name){
+                    $idPhoto = PhotoModel::create($conn, $name['name']);
+                    if($idPhoto){
+                        PhotoModel::createRelationRoom($conn, $result, $idPhoto);
+                    }
+                }
             }
-       foreach($pictures['saves'] as $name){
-        $idphoto = PhotoModel::create($coon, $name['fotos']);
-        $idphoto = PhotoModel::create($coon, $name);
-        if($idphoto){
-            PhotoModel::createRelationRoom($coon, $result, $idphoto);
+            return jsonResponse(['message'=>"Quarto criado com sucesso"]);
+        }else{
+            return jsonResponse(['message'=>"Erro ao criar o quarto"], 400);
         }
-       }
     }
     public static function getAll($conn)
     {
@@ -45,7 +48,7 @@ class QuartosController{
     }
 
     public static function update($conn, $id, $data){
-        ValidatorController::validate_data($data, ["nome", "numero", "qtd_casal", "qtd_solteiro", "preco", "disponivel"]);
+        ValidatorController::validate_data($data, ["nome", "numero", "qtd_cama_casal", "qtd_cama_solteiro", "preco", "disponivel"]);
         $result = QuartosModel::update($conn, $id, $data);
         if ($result) {
             return jsonResponse(['message' => 'Quarto atualizado com sucesso']);
@@ -62,15 +65,13 @@ class QuartosController{
 
         $result = QuartosModel::get_available($conn, $data);
         if($result){
+            foreach ($result as &$quarto) {
+                $quarto['fotos'] = PhotoModel::getByRoomId($conn, $quarto['id']);
+            }
             return jsonResponse(['Quartos'=> $result]);
         }else{
             return jsonResponse(['message'=> 'Deu erro'], 400);
         }
-
-      
-    }
-
     }
 }
-
 ?>
